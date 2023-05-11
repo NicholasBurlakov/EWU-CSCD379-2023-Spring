@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Wordle.Api.Data;
 
@@ -11,9 +12,11 @@ using Wordle.Api.Data;
 namespace Wordle.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230511040657_Player")]
+    partial class Player
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,27 +24,6 @@ namespace Wordle.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Wordle.Api.Data.DateWord", b =>
-                {
-                    b.Property<int>("DateWordId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DateWordId"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("WordId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DateWordId");
-
-                    b.HasIndex("WordId");
-
-                    b.ToTable("DateWords");
-                });
 
             modelBuilder.Entity("Wordle.Api.Data.Player", b =>
                 {
@@ -88,17 +70,6 @@ namespace Wordle.Api.Migrations
                     b.HasKey("WordId");
 
                     b.ToTable("Words");
-                });
-
-            modelBuilder.Entity("Wordle.Api.Data.DateWord", b =>
-                {
-                    b.HasOne("Wordle.Api.Data.Word", "Word")
-                        .WithMany()
-                        .HasForeignKey("WordId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.Navigation("Word");
                 });
 #pragma warning restore 612, 618
         }
