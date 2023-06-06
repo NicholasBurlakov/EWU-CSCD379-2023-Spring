@@ -17,8 +17,8 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import { Services } from '../scripts/services'
-import type { SignInService } from '../scripts/signInService'
+import { Services } from '@/scripts/services'
+import type { SignInService } from '@/scripts/signInService'
 import { inject, ref } from 'vue'
 
 const signInService = inject(Services.SignInService) as SignInService
