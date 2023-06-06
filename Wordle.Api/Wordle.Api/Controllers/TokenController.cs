@@ -118,11 +118,11 @@ public class TokenController : Controller
         return "Authorized as Admin";
     }
 
-    [HttpGet("testruleroftheuniverse")]
-    [Authorize(Roles = "RulerOfTheUniverse,Meg")]
-    public string TestRulerOfTheUniverseOrMeg()
+    [HttpGet("testmasteroftheuniverse")]
+    [Authorize(Roles = "MasterOfTheUniverse")]
+    public string TestMasterOfTheUniverse()
     {
-        return "Authorized as Ruler of the Universe or Meg";
+        return "Authorized as Master of the Universe";
     }
 
     [HttpGet("testrandomadmin")]
